@@ -24,6 +24,7 @@ class News
     public $texttask;
     public $status;
     public $status2;
+
     /**
      * LAZY LOAD
      *
@@ -90,6 +91,26 @@ class News
 
     }
 
+    public static function findAllPagination($page,$namesort)
+    {
+        if(empty($page)){
+            $page = 1;
+        }
+        $notesOnPage = 3;
+        $from = $page * $notesOnPage - $notesOnPage;
+
+
+
+        $db = Db::instance();
+        return $db->query(
+            'SELECT * FROM ' . static::TABLE . ' ORDER BY ' .$namesort. ' LIMIT ' . $from . ',' . $notesOnPage,
+            [],
+            static::class
+        );
+    }
+
+
+
     public static function sortNews($namesort)
     {
 
@@ -101,5 +122,15 @@ class News
         );
     }
 
+    public static function countRecords()
+    {
+
+        $db = Db::instance();
+        return $db->query(
+            'SELECT COUNT(*) FROM ' . static::TABLE,
+            [],
+            static::class
+        );
+    }
 
 }

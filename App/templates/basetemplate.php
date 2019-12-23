@@ -12,7 +12,8 @@ session_start();
 
     <script src="app/templates/js/main.js"></script>
     <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+          integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 
     <title><?php echo isset($title) ? $title : ''; ?></title>
 </head>
@@ -21,12 +22,12 @@ session_start();
 <div class="container">
 
     <nav class="navbar navbar-light bg-light">
-        <a class="navbar-brand" href="/">Главная</a>
+        <a class="navbar-brand" href="/?ctrl=News&action=Index&page=1">Главная</a>
         <?php
-      //  echo session_id();
-        if(!empty($_SESSION['adminname'])){
+        //  echo session_id();
+        if (!empty($_SESSION['adminname'])) {
             echo 'Привет , ' . $_SESSION['adminname'];
-        } else{
+        } else {
             echo 'Привет пользователь ' . $_SESSION['username'];
         }
         ?>
@@ -34,13 +35,13 @@ session_start();
             <a data-toggle="modal"
                data-target="#ModalAutorize" data-whatever="@mdo"
                class="btn btn-warning" role="button">Авторизация</a>&nbsp
-        <a class="btn btn-primary" href="/?ctrl=Admin&action=AdmIndex" role="button">Админка</a>&nbsp
-        <?php
-        if(!empty($_SESSION['adminname'] || $_SESSION['username'])){
-            echo "<a class=\"btn btn-danger\" href=\"/?ctrl=Admin&action=Logout\" role=\"button\">Выход</a>";
-        }
-     //<a class="btn btn-danger" href="/?ctrl=Admin&action=Logout" role="button">Выход</a>
-        ?>
+            <a class="btn btn-primary" href="/?ctrl=Admin&action=AdmIndex" role="button">Админка</a>&nbsp
+            <?php
+            if (!empty($_SESSION['adminname'] || $_SESSION['username'])) {
+                echo "<a class=\"btn btn-danger\" href=\"/?ctrl=Admin&action=Logout\" role=\"button\">Выход</a>";
+            }
+            //<a class="btn btn-danger" href="/?ctrl=Admin&action=Logout" role="button">Выход</a>
+            ?>
 
 
         </form>
@@ -50,7 +51,7 @@ session_start();
 
     <?php
 
-    if (isset($_GET['send']) && $_GET['send'] == 'true'){
+    if (isset($_GET['send']) && $_GET['send'] == 'true') {
         echo "
 <div class=\"alert alert-warning alert-dismissible fade show\" role=\"alert\">
   <strong>Задача успешно добавлена!</strong>
@@ -64,7 +65,6 @@ session_start();
     ?>
 
 
-
     <div class="modal fade" id="ModalAutorize" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
          aria-hidden="true">
         <div class="modal-dialog" role="document">
@@ -76,14 +76,16 @@ session_start();
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                <div class="modal-body was-validated" >
+                <div class="modal-body was-validated">
 
-                    <form id="form_question_answer" enctype="multipart/form-data" method="POST" action="/?ctrl=User&action=Authorization" >
+                    <form id="form_question_answer" enctype="multipart/form-data" method="POST"
+                          action="/?ctrl=User&action=Authorization">
 
 
                         <div class="form-group">
                             <label for="username" class="col-form-label">Введите свое имя:*</label>
-                            <input type="text" name="username" class="form-control" id="validationTooltip01" placeholder="Иван" required>
+                            <input type="text" name="username" class="form-control" id="validationTooltip01"
+                                   placeholder="Иван" required>
 
                             <label for="useremail" class="col-form-label">Ваш е-mail:*</label>
                             <input name="useremail" type="email" class="form-control" id="user-email"
@@ -107,44 +109,30 @@ session_start();
     </script>
 
     <div class="content">
-        <?php if(isset($content)){
-            echo $content;} else{ ?>
+        <?php if (isset($content)) {
+            echo $content;
+        } else { ?>
             Default content
-        <?php }?>
+        <?php } ?>
     </div>
 
 
 
 
-    <br>
-    <nav aria-label="Page navigation example">
-        <ul class="pagination">
-            <li class="page-item">
-                <a class="page-link" href="#" aria-label="Previous">
-                    <span aria-hidden="true">&laquo;</span>
-                </a>
-            </li>
-            <li class="page-item"><a class="page-link" href="#">1</a></li>
-            <li class="page-item"><a class="page-link" href="#">2</a></li>
-            <li class="page-item"><a class="page-link" href="#">3</a></li>
-            <li class="page-item">
-                <a class="page-link" href="#" aria-label="Next">
-                    <span aria-hidden="true">&raquo;</span>
-                </a>
-            </li>
-        </ul>
-    </nav>
-
 
 </div>
 
 
+<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+        integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
+        crossorigin="anonymous"></script>
 
 
-<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
-
-
-<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+        crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+        integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+        crossorigin="anonymous"></script>
 </body>
 </html>

@@ -30,7 +30,11 @@ class News
     protected function actionIndex()
     {
 
-        $this->view->tasks = \App\Models\News::findAll();
+        $page = $_GET['page'];
+        $namesort = $_POST['namesort'];
+
+        $this->view->tasks = \App\Models\News::findAllPagination($page,$namesort);
+        $this->view->pages = \App\Models\News::countRecords();
         $this->view->display(__DIR__ . '/../templates/index.php');
 
     }

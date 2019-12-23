@@ -20,6 +20,9 @@ abstract class Model
         );
     }
 
+
+
+
     public static function findById($id)
     {
         $db = Db::instance();
