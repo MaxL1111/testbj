@@ -91,19 +91,31 @@ class News
 
     }
 
-    public static function findAllPagination($page,$namesort)
+    public static function findAllPagination($page, $namesort)
     {
+
+        session_start();
+
         if(empty($page)){
             $page = 1;
         }
+
+        if(!empty($namesort)){
+            $_SESSION['namesort'] = $namesort;
+        }
+
+
+        if(empty($_SESSION['namesort'])){
+            $_SESSION['namesort'] = 'id';
+        }
+
         $notesOnPage = 3;
         $from = $page * $notesOnPage - $notesOnPage;
 
 
-
         $db = Db::instance();
         return $db->query(
-            'SELECT * FROM ' . static::TABLE . ' ORDER BY ' .$namesort. ' LIMIT ' . $from . ',' . $notesOnPage,
+            'SELECT * FROM ' . static::TABLE . ' ORDER BY ' .$_SESSION['namesort']. ' LIMIT ' . $from . ',' . $notesOnPage,
             [],
             static::class
         );

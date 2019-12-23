@@ -57,8 +57,8 @@ session_start();
         </div>
     </div>
 
-    <h5>Все задачи</h5>
-<form action="/?ctrl=News&action=Sort" method="post">
+    <h5>Все задачи <?php echo ', сортировка по ' . $_SESSION['namesort']?></h5>
+<form action="/?ctrl=News&action=Index" method="post">
     <div class="input-group">
         <select name="namesort" class="custom-select" id="inputGroupSelect04" aria-label="Example select with button addon">
             <option disabled selected>Сортировать...</option>
@@ -116,26 +116,14 @@ session_start();
 
     $array1 = array_reverse($array1);
 
-
     ?>
 
     <nav aria-label="Page navigation example">
         <ul class="pagination">
-            <li class="page-item">
-                <a class="page-link" href="#" aria-label="Previous">
-                    <span aria-hidden="true">&laquo;</span>
-                </a>
-            </li>
-
             <?php  foreach ($array1 as $arr1): ?>
                 <li class="page-item"><a class="page-link" href="/?ctrl=News&action=Index&page=<?php echo $arr1; ?>"><?php echo $arr1; ?></a></li>
             <?php  endforeach; ?>
 
-            <li class="page-item">
-                <a class="page-link" href="#" aria-label="Next">
-                    <span aria-hidden="true">&raquo;</span>
-                </a>
-            </li>
         </ul>
     </nav>
 
