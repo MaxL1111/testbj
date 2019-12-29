@@ -19,7 +19,7 @@ session_start();
 <div class="container">
 
     <nav class="navbar navbar-light bg-light">
-        <a class="navbar-brand" href="/?ctrl=News&action=Index&page=1">Главная</a>
+        <a class="navbar-brand" href="/?ctrl=Tasks&action=Index&page=1">Главная</a>
         <?php
         if (!empty($_SESSION['adminname'])) {
             echo 'Привет , ' . $_SESSION['adminname'];

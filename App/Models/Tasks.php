@@ -4,10 +4,9 @@ namespace App\Models;
 
 use App\Db;
 use App\Model;
-use App\MultiException;
 
 
-class News
+class Tasks
     extends Model
 {
 
@@ -95,8 +94,7 @@ class News
     }
 
 
-
-    public function insert($username,$useremail,$texttask)
+    public function insert($username, $useremail, $texttask)
     {
         session_start();
         $this->name = trim($username);
@@ -116,7 +114,8 @@ class News
 
         foreach ($this as $k => $v) {
             if ('id' == $k) {
-                continue;            }
+                continue;
+            }
             $columns[] = $k;
             $values[':' . $k] = $v;
         }

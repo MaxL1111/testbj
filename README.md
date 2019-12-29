@@ -1,1 +1,2 @@
-# тестовое задание 
+# тестовое задание
+# mvc,PDO,mysql,sessions,pagination

@@ -4,7 +4,7 @@
 namespace App\Controllers;
 
 
-class Admin extends News
+class Admin extends Tasks
 {
 
     protected function actionLogin()
@@ -16,14 +16,14 @@ class Admin extends News
     public function actionEditor()
     {
         $id_editor = $_POST['id_editor'];
-        $this->view->task = \App\Models\News::findById($id_editor);
+        $this->view->task = \App\Models\Tasks::findById($id_editor);
         $this->view->display(__DIR__ . '/../templates/editor.php');
     }
 
     public function actionEditOne()
     {
 
-        $task = new \App\Models\News();
+        $task = new \App\Models\Tasks();
 
         $status = $_POST['status'];
         $status1 = $_POST['status1'];
@@ -42,7 +42,7 @@ class Admin extends News
     protected function actionAdmIndex()
     {
 
-        $this->view->tasks = \App\Models\News::findAll();
+        $this->view->tasks = \App\Models\Tasks::findAll();
         $this->view->display(__DIR__ . '/../templates/admin.php');
 
     }
@@ -65,7 +65,7 @@ class Admin extends News
     protected function actionDelete()
     {
         $id = $_POST['id_delete'];
-        \App\Models\News::delete($id);
+        \App\Models\Tasks::delete($id);
         $this->actionAdmIndex();
     }
 

@@ -3,7 +3,7 @@
 namespace App\Controllers;
 
 
-class User extends News
+class User extends Tasks
 {
     protected function actionAuthorization()
     {
@@ -12,6 +12,6 @@ class User extends News
         $username = $_POST['username'];
         $useremail = $_POST['useremail'];
         \App\Models\User::userAutorization($username, $useremail);
-        header("Location:/?ctrl=News&action=Index");
+        header("Location:/?ctrl=Tasks&action=Index");
     }
 }

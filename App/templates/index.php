@@ -2,7 +2,7 @@
 session_start();
 ?>
 
-<title><?php echo isset($title) ? $title : 'Главная'; ?></title>
+    <title><?php echo isset($title) ? $title : 'Главная'; ?></title>
 
 <?php if (!isset($content)) {
     ob_start(); ?>
@@ -26,7 +26,7 @@ session_start();
                 <div class="modal-body was-validated">
 
                     <form id="form_question_answer" enctype="multipart/form-data" method="POST"
-                          action="?ctrl=News&action=InsertOne">
+                          action="?ctrl=Tasks&action=InsertOne">
 
 
                         <div class="form-group">
@@ -59,7 +59,7 @@ session_start();
     </div>
 
     <h5>Все задачи <?php echo ', сортировка по ' . $_SESSION['namesort'] ?></h5>
-    <form action="/?ctrl=News&action=Index" method="post">
+    <form action="/?ctrl=Tasks&action=Index" method="post">
         <div class="input-group">
             <select name="namesort" class="custom-select" id="inputGroupSelect04"
                     aria-label="Example select with button addon">
@@ -122,7 +122,7 @@ session_start();
         <ul class="pagination">
             <?php foreach ($array1 as $arr1): ?>
                 <li class="page-item"><a class="page-link"
-                                         href="/?ctrl=News&action=Index&page=<?php echo $arr1; ?>"><?php echo $arr1; ?></a>
+                                         href="/?ctrl=Tasks&action=Index&page=<?php echo $arr1; ?>"><?php echo $arr1; ?></a>
                 </li>
             <?php endforeach; ?>
 

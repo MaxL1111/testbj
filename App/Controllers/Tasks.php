@@ -4,7 +4,7 @@ namespace App\Controllers;
 
 use App\View;
 
-class News
+class Tasks
 {
     protected $view;
 
@@ -30,8 +30,8 @@ class News
         $page = $_GET['page'];
         $namesort = $_POST['namesort'];
 
-        $this->view->tasks = \App\Models\News::findAllPagination($page, $namesort);
-        $this->view->pages = \App\Models\News::countRecords();
+        $this->view->tasks = \App\Models\Tasks::findAllPagination($page, $namesort);
+        $this->view->pages = \App\Models\Tasks::countRecords();
         $this->view->display(__DIR__ . '/../templates/index.php');
     }
 
@@ -39,7 +39,7 @@ class News
     protected function actionInsertOne()
     {
         session_start();
-        $task = new \App\Models\News();
+        $task = new \App\Models\Tasks();
 
         $username = $_POST['username'];
         $useremail = $_POST['useremail'];

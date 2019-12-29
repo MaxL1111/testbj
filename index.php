@@ -4,7 +4,7 @@ require __DIR__ . '/autoload.php';
 
 $url = $_SERVER['REQUEST_URI'];
 
-$ctrl = $_GET['ctrl'] ?: 'News';
+$ctrl = $_GET['ctrl'] ?: 'Tasks';
 $controllerClassName = '\App\Controllers\\' . $ctrl;
 
 
