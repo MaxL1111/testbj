@@ -93,7 +93,8 @@ session_start();
                     <th scope="row"><?php echo $task->name; ?></th>
                     <td><?php echo $task->email; ?></td>
                     <td><?php echo $task->texttask; ?></td>
-                    <td><?php echo $task->status; ?></td>
+                    <td><?php echo $task->status; ?><br>
+                        <?php echo $task->status2; ?></td>
                 </tr>
                 </tbody>
             <?php endif; ?>
