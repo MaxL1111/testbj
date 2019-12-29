@@ -7,7 +7,6 @@ namespace App\Controllers;
 class Admin extends News
 {
 
-
     protected function actionLogin()
     {
         $this->view->display(__DIR__ . '/../templates/login.php');
@@ -19,7 +18,6 @@ class Admin extends News
         $id_editor = $_POST['id_editor'];
         $this->view->task = \App\Models\News::findById($id_editor);
         $this->view->display(__DIR__ . '/../templates/editor.php');
-
     }
 
     public function actionEditOne()
@@ -56,9 +54,9 @@ class Admin extends News
 
     protected function actionLoginIn()
     {
-        $adminname = trim($_POST['adminname']);
-        $adminpass = trim($_POST['adminpass']);
-        $action = \App\Models\Admin::findByNamePass($adminname, $adminpass);
+        $adminnamepost = $_POST['adminname'];
+        $adminpasspost = $_POST['adminpass'];
+        $action = \App\Models\Admin::findByNamePass($adminnamepost, $adminpasspost);
 
         $this->action($action);
 

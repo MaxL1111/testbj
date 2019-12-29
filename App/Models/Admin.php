@@ -14,8 +14,12 @@ class Admin extends Model
     public $adminname;
     public $adminpass;
 
-    public static function findByNamePass($adminname, $adminpass)
+    public static function findByNamePass($adminnamepost, $adminpasspost)
     {
+
+        $adminname = trim($adminnamepost);
+        $adminpass = trim($adminpasspost);
+
         $db = Db::instance();
         $result = $db->query(
             'SELECT id FROM ' . static::TABLE . ' WHERE adminname=:adminname and adminpass=:adminpass',

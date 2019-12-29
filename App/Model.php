@@ -42,7 +42,7 @@ abstract class Model
 
 
 
-    public function insert()
+    public function insert($username,$useremail,$texttask)
     {
         if (!$this->isNew()) {
             return;

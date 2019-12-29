@@ -1,6 +1,5 @@
 <?php
 
-
 namespace App\Controllers;
 
 
@@ -9,11 +8,10 @@ class User extends News
     protected function actionAuthorization()
     {
         session_start();
-        $_SESSION['username'] = trim($_POST['username']);
-        $_SESSION['useremail'] = trim($_POST['useremail']);
 
+        $username = $_POST['username'];
+        $useremail = $_POST['useremail'];
+        \App\Models\User::userAutorization($username, $useremail);
         header("Location:/?ctrl=News&action=Index");
-
     }
-
 }

@@ -1,14 +1,12 @@
 <?php
 session_start();
-
 ?>
+
 <title><?php echo isset($title) ? $title : 'Главная'; ?></title>
 
-<?php if(!isset($content)){ ob_start(); ?>
-    <?php
-    //session.session_set_save_handler();
-  // var_dump(sys_get_temp_dir(sess_4gj31ktruph0etcldnm1gdh4ev7gas5k));
-    ?>
+<?php if (!isset($content)) {
+    ob_start(); ?>
+
     <button type="button" class="btn btn-success btn-lg btn-block" data-toggle="modal"
             data-target="#exampleModal3" data-whatever="@mdo">
         Опубликовать задачу <i class="far fa-hand-point-up"></i>
@@ -25,25 +23,28 @@ session_start();
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                <div class="modal-body was-validated" >
+                <div class="modal-body was-validated">
 
-                    <form id="form_question_answer" enctype="multipart/form-data" method="POST" action="?ctrl=News&action=InsertOne" >
+                    <form id="form_question_answer" enctype="multipart/form-data" method="POST"
+                          action="?ctrl=News&action=InsertOne">
 
 
                         <div class="form-group">
                             <label for="validationTooltip01" class="col-form-label">Введите свое имя:*</label>
-                            <input type="text" name="username" class="form-control" id="validationTooltip01" placeholder="Иван" value="<?php echo $_SESSION['username'] ?>" required>
+                            <input type="text" name="username" class="form-control" id="validationTooltip01"
+                                   placeholder="Иван" value="<?php echo $_SESSION['username'] ?>" required>
 
                             <label for="email" class="col-form-label">Ваш е-mail:*</label>
                             <input name="useremail" type="email" class="form-control" id="user-email"
-                                   placeholder="yourmail@example.by" value="<?php echo $_SESSION['useremail'] ?>" required>
+                                   placeholder="yourmail@example.by" value="<?php echo $_SESSION['useremail'] ?>"
+                                   required>
                         </div>
 
                         <div class="form-group">
                             <label for="validationTextarea" class="col-form-label">Текст задачи:*</label>
-                            <textarea name="texttask" class="form-control is-invalid" id="validationTextarea" required></textarea>
+                            <textarea name="texttask" class="form-control is-invalid" id="validationTextarea"
+                                      required></textarea>
                         </div>
-
 
 
                         <div class="modal-footer">
@@ -57,20 +58,21 @@ session_start();
         </div>
     </div>
 
-    <h5>Все задачи <?php echo ', сортировка по ' . $_SESSION['namesort']?></h5>
-<form action="/?ctrl=News&action=Index" method="post">
-    <div class="input-group">
-        <select name="namesort" class="custom-select" id="inputGroupSelect04" aria-label="Example select with button addon">
-            <option disabled selected>Сортировать...</option>
-            <option value="name">по имени пользователя</option>
-            <option value="email">по email</option>
-            <option value="status">по статусу</option>
-        </select>
-        <div class="input-group-append">
-            <button class="btn btn-outline-secondary" type="submit">Применить</button>
+    <h5>Все задачи <?php echo ', сортировка по ' . $_SESSION['namesort'] ?></h5>
+    <form action="/?ctrl=News&action=Index" method="post">
+        <div class="input-group">
+            <select name="namesort" class="custom-select" id="inputGroupSelect04"
+                    aria-label="Example select with button addon">
+                <option disabled selected>Сортировать...</option>
+                <option value="name">по имени пользователя</option>
+                <option value="email">по email</option>
+                <option value="status">по статусу</option>
+            </select>
+            <div class="input-group-append">
+                <button class="btn btn-outline-secondary" type="submit">Применить</button>
+            </div>
         </div>
-    </div>
-</form>
+    </form>
 
     <table class="table">
         <thead class="thead-dark">
@@ -84,7 +86,7 @@ session_start();
         </thead>
         <?php foreach ($tasks as $task) : ?>
 
-            <?php if (!empty($task->name)):?>
+            <?php if (!empty($task->name)): ?>
 
                 <tbody>
                 <tr>
@@ -108,26 +110,27 @@ session_start();
 
     $res = ceil($count / 3);
 
-
     while ($res > 0) {
         $array1[] = $res;
         --$res;
     }
 
     $array1 = array_reverse($array1);
-
     ?>
 
     <nav aria-label="Page navigation example">
         <ul class="pagination">
-            <?php  foreach ($array1 as $arr1): ?>
-                <li class="page-item"><a class="page-link" href="/?ctrl=News&action=Index&page=<?php echo $arr1; ?>"><?php echo $arr1; ?></a></li>
-            <?php  endforeach; ?>
+            <?php foreach ($array1 as $arr1): ?>
+                <li class="page-item"><a class="page-link"
+                                         href="/?ctrl=News&action=Index&page=<?php echo $arr1; ?>"><?php echo $arr1; ?></a>
+                </li>
+            <?php endforeach; ?>
 
         </ul>
     </nav>
 
 
-    <?php $content = ob_get_clean();} ?>
+    <?php $content = ob_get_clean();
+} ?>
 
 <?php require 'basetemplate.php'; ?>

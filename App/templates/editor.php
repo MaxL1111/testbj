@@ -21,7 +21,6 @@ if (empty($_SESSION['adminname'])) {
                     <form method="post" action="/?ctrl=Admin&action=EditOne" class="was-validated">
 
 
-
                         <div class="form-group">
 
                             <p>Имя пользователя: <?php echo $task->name; ?> </p>
@@ -29,12 +28,13 @@ if (empty($_SESSION['adminname'])) {
                             <input type="hidden" name="status2" value="<?php echo $task->status2; ?>">
                             <input type="hidden" name="texttask1" value="<?php echo $task->texttask; ?>">
                             <label for="validationTextarea" class="col-form-label">Текст задачи:*</label>
-                            <textarea name="texttask" rows="8" class="form-control is-invalid" id="validationTextarea" required><?php echo $task->texttask; ?></textarea>
+                            <textarea name="texttask" rows="8" class="form-control is-invalid" id="validationTextarea"
+                                      required><?php echo $task->texttask; ?></textarea>
                         </div>
                         <input type="hidden" name="status1" value="<?php echo $task->status; ?>">
                         <div class="form-group">
 
-                        <p><input type="checkbox" name="status" value="выполнено,"> выполнено</p>
+                            <p><input type="checkbox" name="status" value="выполнено,"> выполнено</p>
                         </div>
 
 
@@ -47,8 +47,6 @@ if (empty($_SESSION['adminname'])) {
             </div>
         </div>
     </div>
-
-
 
 
     <?php $content = ob_get_clean();

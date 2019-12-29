@@ -49,7 +49,6 @@ if (empty($_SESSION['adminname'])) {
                         </form>
 
 
-
                         </p>
 
 
@@ -67,11 +66,9 @@ if (empty($_SESSION['adminname'])) {
                 </tbody>
 
 
-
             <?php endif; ?>
         <?php endforeach; ?>
     </table>
-
 
 
     <?php $content = ob_get_clean();

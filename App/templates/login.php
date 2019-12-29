@@ -1,8 +1,5 @@
 <?php
 session_start();
-//var_dump($_SESSION);
-
-
 ?>
 
 <title><?php echo isset($title) ? $title : 'Вход в админку'; ?></title>
@@ -14,10 +11,7 @@ session_start();
     <div class="row justify-content-center">
         <div class="col-md-8">
 
-
             <div class="card">
-
-
 
                 <div class="card-body">
 
@@ -25,30 +19,30 @@ session_start();
                         <div class="form-group row">
                             <div class="col-md-6">
                                 <label for="validationTooltip01">Имя</label>
-                                <input name="adminname" type="text" class="form-control is-invalid" id="validationTooltip01" required>
+                                <input name="adminname" type="text" class="form-control is-invalid"
+                                       id="validationTooltip01" required>
 
                             </div>
                         </div>
                         <div class="form-group row">
                             <div class="col-md-6">
                                 <label for="inputPassword3">Пароль</label>
-                                <input name="adminpass" type="password" class="form-control is-invalid" id="inputPassword3" required>
+                                <input name="adminpass" type="password" class="form-control is-invalid"
+                                       id="inputPassword3" required>
 
                             </div>
                         </div>
                         <button type="submit" class="btn btn-primary">Войти</button>
                         <div>
                             <br>
-                        <?php
-                        //  echo session_id();
-                        if(!empty($_SESSION['adminname'])){
-                            echo 'Вы ввошли как , ' . $_SESSION['adminname'];
-                        } else{
-                            echo $_SESSION['adminerror'];
-                        }
+                            <?php
+                            if (!empty($_SESSION['adminname'])) {
+                                echo 'Вы ввошли как , ' . $_SESSION['adminname'];
+                            } else {
+                                echo $_SESSION['adminerror'];
+                            }
 
-
-                        ?>
+                            ?>
                         </div>
                     </form>
 

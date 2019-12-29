@@ -6,12 +6,7 @@ use App\Db;
 use App\Model;
 use App\MultiException;
 
-/**
- * Class News
- * @package App\Models
- *
- * @property \App\Models\Author $author
- */
+
 class News
     extends Model
 {
@@ -25,62 +20,22 @@ class News
     public $status;
     public $status2;
 
-    /**
-     * LAZY LOAD
-     *
-     * @param $k
-     * @return null
+    /*
+     обновление записи в таблице
      */
-    public function __get($k)
-    {
-        switch ($k) {
-            case 'author':
-                return Author::findById($this->author_id);
-                break;
-            default:
-                return null;
-        }
-    }
-
-    public function __isset($k)
-    {
-        switch ($k) {
-            case 'author':
-                return !empty($this->author_id);
-                break;
-            default:
-                return false;
-        }
-    }
-
-    public function fill($data = [])
-    {
-        $e = new MultiException();
-        if (true) {
-            $e[] = new \Exception('Заголовок неверный');
-        }
-        if (true) {
-            $e[] = new \Exception('Текст неверный');
-        }
-        throw $e;
-    }
-
-    public function updateOne($status,$status1, $status2,$texttask, $texttask1)
+    public function updateOne($status, $status1, $status2, $texttask, $texttask1)
     {
         $res = strnatcmp($texttask1, $texttask);
         if ($res != 0) {
             $this->status2 = 'отредактировано администратором';
-
-        }else{
+        } else {
             $this->status2 = $status2;
         }
 
 
-        if(empty($status)){
+        if (empty($status)) {
             $this->status = $status1;
-
-           // $res1 = 'status=:status';
-        }else{
+        } else {
             $this->status = $status;
         }
 
@@ -91,49 +46,43 @@ class News
 
     }
 
+
+    /*
+     выборка всех записей из таблицы и вывод их по три на страницу
+     */
     public static function findAllPagination($page, $namesort)
     {
 
         session_start();
 
-        if(empty($page)){
+        if (empty($page)) {
             $page = 1;
         }
 
-        if(!empty($namesort)){
+        if (!empty($namesort)) {
             $_SESSION['namesort'] = $namesort;
         }
 
 
-        if(empty($_SESSION['namesort'])){
+        if (empty($_SESSION['namesort'])) {
             $_SESSION['namesort'] = 'id';
         }
 
-        $notesOnPage = 3;
+        $notesOnPage = 3; //количество записей на страницу
         $from = $page * $notesOnPage - $notesOnPage;
 
 
         $db = Db::instance();
         return $db->query(
-            'SELECT * FROM ' . static::TABLE . ' ORDER BY ' .$_SESSION['namesort']. ' LIMIT ' . $from . ',' . $notesOnPage,
+            'SELECT * FROM ' . static::TABLE . ' ORDER BY ' . $_SESSION['namesort'] . ' LIMIT ' . $from . ',' . $notesOnPage,
             [],
             static::class
         );
     }
 
-
-
-    public static function sortNews($namesort)
-    {
-
-        $db = Db::instance();
-        return $db->query(
-            'SELECT * FROM ' . static::TABLE . ' ORDER BY ' . $namesort,
-            [],
-            static::class
-        );
-    }
-
+    /*
+    подсчет общего количства записей в таблице
+     */
     public static function countRecords()
     {
 
@@ -144,5 +93,44 @@ class News
             static::class
         );
     }
+
+
+
+    public function insert($username,$useremail,$texttask)
+    {
+        session_start();
+        $this->name = trim($username);
+        $this->email = trim($useremail);
+        $this->texttask = trim($texttask);
+        $this->status = "&nbsp";
+        $this->status2 = "&nbsp";
+        $_SESSION['username'] = trim($username);
+        $_SESSION['useremail'] = trim($useremail);
+
+        if (!$this->isNew()) {
+            return;
+        }
+
+        $columns = [];
+        $values = [];
+
+        foreach ($this as $k => $v) {
+            if ('id' == $k) {
+                continue;            }
+            $columns[] = $k;
+            $values[':' . $k] = $v;
+        }
+
+
+        $sql = '
+INSERT INTO ' . static::TABLE . '
+(' . implode(',', $columns) . ')
+VALUES
+(' . implode(',', array_keys($values)) . ')
+        ';
+        $db = Db::instance();
+        $db->execute($sql, $values);
+    }
+
 
 }

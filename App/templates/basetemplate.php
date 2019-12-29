@@ -1,7 +1,5 @@
 <?php
-
 session_start();
-
 ?>
 <!doctype html>
 <html lang="en">
@@ -10,7 +8,6 @@ session_start();
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-    <script src="app/templates/js/main.js"></script>
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
           integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
@@ -24,7 +21,6 @@ session_start();
     <nav class="navbar navbar-light bg-light">
         <a class="navbar-brand" href="/?ctrl=News&action=Index&page=1">Главная</a>
         <?php
-        //  echo session_id();
         if (!empty($_SESSION['adminname'])) {
             echo 'Привет , ' . $_SESSION['adminname'];
         } else {
@@ -117,17 +113,12 @@ session_start();
     </div>
 
 
-
-
-
 </div>
 
 
 <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
         integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
         crossorigin="anonymous"></script>
-
-
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
         integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
         crossorigin="anonymous"></script>

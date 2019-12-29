@@ -3,6 +3,8 @@
 
 namespace App;
 
+use PDOException;
+
 class Db
 {
 
@@ -12,8 +14,12 @@ class Db
 
     protected function __construct()
     {
-        $dsn = 'mysql:host=localhost;dbname=beejee';
-        $this->dbh = new \PDO($dsn, 'root', '');;
+        try {
+            $dsn = 'mysql:host=localhost;dbname=beejee';
+            $this->dbh = new \PDO($dsn, 'root', '');
+        }catch (PDOException $exception){
+            throw new \App\Exceptions\Db('Что-то не так с базой данных');
+        }
     }
 
     public function execute($sql, $params = [])
@@ -22,6 +28,7 @@ class Db
         $res = $sth->execute($params);
         return $res;
     }
+
 
     public function query($sql, $params, $class)
     {
